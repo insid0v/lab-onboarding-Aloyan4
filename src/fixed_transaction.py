@@ -1,0 +1,25 @@
+def process_transaction(user_id, amount, db_connection):
+    status = "pending"
+
+    if amount > 0:
+        status = "approved"
+        balance = get_balance(user_id)
+        new_balance = balance - amount
+        update_balance(user_id, new_balance)
+
+    log_entry = "Transaction finished with status: " + status
+
+    with open("audit_log.txt", "w") as file:
+        file.write(log_entry)
+
+    return status
+
+
+def get_balance(user_id):
+    # Заглушка для линтера
+    return 1000
+
+
+def update_balance(user_id, balance):
+    # Заглушка для линтера
+    pass
